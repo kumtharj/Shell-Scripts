@@ -1,7 +1,7 @@
 #!/bin/bash
 
 release=`cat /etc/os-release`
-DATE= `date`
+DATE=`date`
 echo "This is $release...!"
 
 echo "$DATE"
