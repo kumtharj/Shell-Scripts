@@ -1,0 +1,15 @@
+name: To check os distribustion version
+on: 
+ pull_request:
+   branches: ["master"]
+
+jobs:
+  build:
+     runs-on: ubuntu-latest
+
+     steps:
+      - uses: actions/checkout@v3
+      - name: check os distribustion version
+        run : |
+
+          ./check-os-version.sh
