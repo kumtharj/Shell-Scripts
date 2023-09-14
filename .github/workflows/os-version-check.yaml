@@ -1,6 +1,6 @@
 name: To check os distribustion version
 on: 
- pull_request:
+ push:
    branches: ["master"]
 
 jobs:
