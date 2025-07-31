@@ -1,27 +1,28 @@
-name: OS Version Check
-on: 
- push:
-   branches: ["master"]
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
-     runs-on: ubuntu-latest
+    name: 🛠️ Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Building the app..."
 
-     steps:
-      - uses: actions/checkout@v3
-      - name: check os distribustion version
-        run : |
-         chmod +x check-os-version.sh
-         ./check-os-version.sh
-
+  test:
+    name: ✅ Test
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Running tests..."
 
   deploy:
-     if: ${{github.event.workflow_run.conclusion == 'success' }}
-     runs-on: ubuntu-latest
-
-     steps:
-       - name: checkout
-         uses: actions/checkout@v4
-
-       - name: Deploy
-         run: echo "Deploying after successful build"
+    name: 🚀 Deploy
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploying..."
