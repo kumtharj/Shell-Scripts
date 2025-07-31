@@ -1,4 +1,4 @@
-name: To check os distribustion version
+name: OS Version Check
 on: 
  push:
    branches: ["master"]
