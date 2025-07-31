@@ -1,28 +1,26 @@
-name: CI Pipeline
-
+name: OS Version Check
 on:
-  push:
-    branches:
-      - master
+ push:
+   branches: ["master"]
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "Building the app..."
+     runs-on: ubuntu-latest
 
-  test:
-    name: Test
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Running tests..."
+     steps:
+      - uses: actions/checkout@v3
+      - name: check os distribustion version
+        run : |
+         chmod +x check-os-version.sh
+         ./check-os-version.sh
+
 
   deploy:
-    name: Deploy
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Deploying..."
+     runs-on: ubuntu-latest
+
+     steps:
+       - name: checkout
+         uses: actions/checkout@v4
+
+       - name: Deploy
+         run: echo "Deploying after successful build"
