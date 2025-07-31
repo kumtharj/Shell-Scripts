@@ -2,7 +2,7 @@ name: Deploy after Build
 
 on:
   workflow_run:
-    workflow: ["OS Version Check"]
+    workflows: ["OS Version Check"]
     types:
       - completed
 
